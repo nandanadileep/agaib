@@ -13,6 +13,26 @@ from google import genai
 from PIL import Image
 import imagehash
 
+# OpenTelemetry imports
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
+from opentelemetry.trace import Status, StatusCode
+
+
+# ============ OpenTelemetry Setup ============
+
+def setup_telemetry() -> trace.Tracer:
+    """Configure OTel with ConsoleSpanExporter and BatchSpanProcessor."""
+    provider = TracerProvider()
+    processor = BatchSpanProcessor(ConsoleSpanExporter())
+    provider.add_span_processor(processor)
+    trace.set_tracer_provider(provider)
+    return trace.get_tracer(__name__)
+
+
+tracer = setup_telemetry()
+
 
 CACHE_DIR = Path("cache")
 from google.genai.types import Part
@@ -402,10 +422,53 @@ def process_screenshot(
     primary_model: str = "gemini-2.5-flash"
 ) -> Optional[ScreenOutput]:
     
-    # Guardrails
-    path = validate_non_empty_input(image_path)
-    validate_api_key(api_key)
-    validate_image_file(path)
+    with tracer.start_as_current_span("process_screenshot") as main_span:
+        main_span.set_attribute("image_path", str(image_path))
+        main_span.set_attribute("model", primary_model)
+        
+        # Guardrails span
+        with tracer.start_as_current_span("guardrails_validation") as guardrails_span:
+            path = validate_non_empty_input(image_path)
+            validate_api_key(api_key)
+            validate_image_file(path)
+            
+            try:
+                ImageInput(image=str(path))
+            except ValidationError as ve:
+                if "too large" in str(ve):
+                    print("❌ Image too large. Re-upload under 1.5MB")
+                    return None
+                raise
+        
+        # Image compression span
+        with tracer.start_as_current_span("image_compression") as compress_span:
+            image_bytes = path.read_bytes()
+            original_size = len(image_bytes)
+            image_bytes = compress_image(image_bytes)
+            compressed_size = len(image_bytes)
+            compress_span.set_attribute("original_size_bytes", original_size)
+            compress_span.set_attribute("compressed_size_bytes", compressed_size)
+            print(f"📦 Image: {original_size/1024:.1f}KB → {compressed_size/1024:.1f}KB (saved {100-((compressed_size/original_size)*100):.0f}%)")
+        
+        # Cache check span
+        with tracer.start_as_current_span("cache_check") as cache_span:
+            image_hash = get_image_hash(image_bytes)
+            cached_result = get_from_cache(image_hash)
+            
+            if cached_result:
+                cache_span.set_attribute("cache_hit", True)
+                print(f"✅ Returning cached result")
+                with open(output_path, "w") as f:
+                    json.dump(cached_result, f, indent=2)
+                return ScreenOutput.model_validate(cached_result)
+            cache_span.set_attribute("cache_hit", False)
+        
+        # Add image hash to main span
+        main_span.set_attribute("image_hash", image_hash)
+        
+        validate_token_limit(SYSTEM_PROMPT, 1)
+        
+        client = genai.Client(api_key=api_key, http_options={"timeout": DEFAULT_TIMEOUT_MS})
     
     try:
         ImageInput(image=str(path))
@@ -441,31 +504,59 @@ def process_screenshot(
     
     for model in models:
         for attempt in range(max_retries):
-            try:
-                response = client.models.generate_content(
-                    model=model,
-                    contents=[SYSTEM_PROMPT, Part.from_bytes(data=image_bytes, mime_type="image/png")],
-                    config={
-                        "temperature": DEFAULT_TEMPERATURE,
-                        "seed": DEFAULT_SEED
-                    }
-                )
+            with tracer.start_as_current_span(f"llm_call.{model}.attempt_{attempt}") as llm_span:
+                llm_span.set_attribute("model", model)
+                llm_span.set_attribute("attempt", attempt)
                 
-                if not response.text or not response.text.strip():
-                    raise ValueError("Empty response")
-                
-                llm_output = json.loads(response.text)
-                
-                # PII Masking
-                llm_output = mask_pii_in_output(llm_output)
+                try:
+                    response = client.models.generate_content(
+                        model=model,
+                        contents=[SYSTEM_PROMPT, Part.from_bytes(data=image_bytes, mime_type="image/png")],
+                        config={
+                            "temperature": DEFAULT_TEMPERATURE,
+                            "seed": DEFAULT_SEED
+                        }
+                    )
+                    
+                    # Add prompt as span event (not attribute - avoids size limits)
+                    llm_span.add_event(
+                        name="llm_prompt",
+                        attributes={
+                            "system_prompt_length": len(SYSTEM_PROMPT),
+                            "has_image": True,
+                            "image_size_bytes": len(image_bytes)
+                        }
+                    )
+                    
+                    if not response.text or not response.text.strip():
+                        raise ValueError("Empty response")
+                    
+                    # Add response as span event (not attribute - avoids size limits)
+                    response_preview = response.text[:1000] if len(response.text) > 1000 else response.text
+                    llm_span.add_event(
+                        name="llm_response",
+                        attributes={
+                            "response_length": len(response.text),
+                            "response_preview": response_preview
+                        }
+                    )
+                    
+                    llm_output = json.loads(response.text)
+                    
+                    # PII Masking span
+                    with tracer.start_as_current_span("pii_masking") as pii_span:
+                        llm_output = mask_pii_in_output(llm_output)
                 
                 # Validation with circuit breaker
                 for vattempt in range(max_retries):
-                    try:
-                        validated = ScreenOutput.model_validate(llm_output)
-                        
-                        low_conf = [e for e in validated.elements 
-                                   if e.metadata.confidence and e.metadata.confidence < MIN_CONFIDENCE_THRESHOLD]
+                    with tracer.start_as_current_span(f"pydantic_validation.attempt_{vattempt}") as validation_span:
+                        try:
+                            validated = ScreenOutput.model_validate(llm_output)
+                            validation_span.set_attribute("validation_passed", True)
+                            validation_span.set_attribute("element_count", len(validated.elements))
+                            
+                            low_conf = [e for e in validated.elements 
+                                       if e.metadata.confidence and e.metadata.confidence < MIN_CONFIDENCE_THRESHOLD]
                         
                         if low_conf and vattempt < max_retries - 1:
                             response = client.models.generate_content(
