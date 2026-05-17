@@ -1,0 +1,37 @@
+input - screenshot  - png/jpg size 750kb maximum, -- enforce these through pydantic (so incase we add more endpoints we just have to call pydantic model)
+
+output - structrured json -- structure will be defined with ENUMs
+
+
+edgecases - if the options are not given in the ENUM -- LLM can think of one
+other image formats - dont accept. 
+
+
+step 1: define the data contracts 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+flat tree - easier to prompt 
+neseted - difficult to prompt but maintaints the structrure 
+
+2. elements list in ENUM 

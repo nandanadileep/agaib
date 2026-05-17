@@ -1,0 +1,656 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Screen Element Output Schema",
+  "description": "Schema for UI element extraction from screen captures",
+  "type": "object",
+  "properties": {
+    "elements": {
+      "type": "array",
+      "description": "List of UI elements detected in the screen",
+      "items": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "object",
+            "description": "Identity attributes of the UI element",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "button",
+                  "input",
+                  "textarea",
+                  "dropdown",
+                  "select",
+                  "checkbox",
+                  "radio",
+                  "toggle",
+                  "modal",
+                  "dialog",
+                  "sidebar",
+                  "navbar",
+                  "header",
+                  "footer",
+                  "toolbar",
+                  "tab",
+                  "accordion",
+                  "card",
+                  "list",
+                  "list_item",
+                  "table",
+                  "table_row",
+                  "table_cell",
+                  "tree",
+                  "tree_item",
+                  "icon",
+                  "text",
+                  "heading",
+                  "link",
+                  "image",
+                  "avatar",
+                  "badge",
+                  "tooltip",
+                  "popup",
+                  "menu",
+                  "menu_item",
+                  "breadcrumb",
+                  "pagination",
+                  "progress",
+                  "slider",
+                  "datepicker",
+                  "timepicker",
+                  "search",
+                  "form",
+                  "section",
+                  "container",
+                  "divider",
+                  "spinner",
+                  "skeleton",
+                  "other"
+                ],
+                "description": "The type of UI element"
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "tertiary",
+                  "destructive",
+                  "success",
+                  "warning",
+                  "info",
+                  "link",
+                  "action",
+                  "navigation",
+                  "form_field",
+                  "container",
+                  "decorative"
+                ],
+                "description": "The role or purpose of the element"
+              },
+              "semantic_type": {
+                "type": "string",
+                "enum": [
+                  "submit",
+                  "cancel",
+                  "close",
+                  "save",
+                  "delete",
+                  "edit",
+                  "search",
+                  "filter",
+                  "sort",
+                  "expand",
+                  "collapse",
+                  "select_all",
+                  "refresh",
+                  "download",
+                  "upload",
+                  "share",
+                  "settings",
+                  "help",
+                  "login",
+                  "logout",
+                  "register",
+                  "back",
+                  "next",
+                  "confirm",
+                  "yes",
+                  "no",
+                  "skip",
+                  "continue",
+                  "submit_form",
+                  "reset_form",
+                  "clear",
+                  "copy",
+                  "paste",
+                  "undo",
+                  "redo"
+                ],
+                "description": "Semantic action or function of the element"
+              }
+            },
+            "required": ["type"]
+          },
+          "position": {
+            "type": "object",
+            "description": "Position and dimensions of the element",
+            "properties": {
+              "coordinate_type": {
+                "type": "string",
+                "enum": ["pixel", "normalized", "percentage"],
+                "description": "Type of coordinates used"
+              },
+              "x": {
+                "type": "number",
+                "description": "X coordinate (left edge)"
+              },
+              "y": {
+                "type": "number",
+                "description": "Y coordinate (top edge)"
+              },
+              "width": {
+                "type": "number",
+                "description": "Width of the element"
+              },
+              "height": {
+                "type": "number",
+                "description": "Height of the element"
+              },
+              "center_x": {
+                "type": "number",
+                "description": "Center X coordinate"
+              },
+              "center_y": {
+                "type": "number",
+                "description": "Center Y coordinate"
+              }
+            },
+            "required": ["x", "y", "width", "height"]
+          },
+          "content": {
+            "type": "object",
+            "description": "Content attributes of the element",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Text label displayed on or associated with the element"
+              },
+              "placeholder": {
+                "type": "string",
+                "description": "Placeholder text in input fields"
+              },
+              "value": {
+                "type": "string",
+                "description": "Current value of the element"
+              },
+              "alt_text": {
+                "type": "string",
+                "description": "Alternative text for images and icons"
+              },
+              "tooltip": {
+                "type": "string",
+                "description": "Tooltip text shown on hover"
+              },
+              "description": {
+                "type": "string",
+                "description": "Additional description or aria-label"
+              },
+              "text_content": {
+                "type": "string",
+                "description": "Full text content if element displays text"
+              },
+              "icon_name": {
+                "type": "string",
+                "enum": [
+                  "arrow_left",
+                  "arrow_right",
+                  "arrow_up",
+                  "arrow_down",
+                  "chevron_left",
+                  "chevron_right",
+                  "chevron_up",
+                  "chevron_down",
+                  "menu",
+                  "hamburger",
+                  "close",
+                  "x",
+                  "check",
+                  "checkmark",
+                  "plus",
+                  "minus",
+                  "search",
+                  "magnify",
+                  "settings",
+                  "gear",
+                  "filter",
+                  "sort",
+                  "refresh",
+                  "reload",
+                  "download",
+                  "upload",
+                  "copy",
+                  "cut",
+                  "paste",
+                  "trash",
+                  "delete",
+                  "edit",
+                  "pencil",
+                  "save",
+                  "share",
+                  "send",
+                  "home",
+                  "user",
+                  "profile",
+                  "notification",
+                  "bell",
+                  "warning",
+                  "alert",
+                  "error",
+                  "info",
+                  "question",
+                  "help",
+                  "star",
+                  "heart",
+                  "like",
+                  "bookmark",
+                  "eye",
+                  "visibility",
+                  "visibility_off",
+                  "lock",
+                  "unlock",
+                  "calendar",
+                  "clock",
+                  "mail",
+                  "phone",
+                  "camera",
+                  "image",
+                  "folder",
+                  "file",
+                  "document",
+                  "play",
+                  "pause",
+                  "stop",
+                  "forward",
+                  "backward",
+                  "skip_next",
+                  "skip_previous",
+                  "expand",
+                  "collapse",
+                  "fullscreen",
+                  "exit_fullscreen",
+                  "drag",
+                  "move",
+                  "dots",
+                  "more",
+                  "unknown"
+                ],
+                "description": "Name of the icon if element is an icon"
+              }
+            }
+          },
+          "state": {
+            "type": "object",
+            "description": "Current state of the element",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether the element is enabled or disabled"
+              },
+              "visible": {
+                "type": "boolean",
+                "description": "Whether the element is visible on screen"
+              },
+              "focused": {
+                "type": "boolean",
+                "description": "Whether the element currently has focus"
+              },
+              "checked": {
+                "type": "boolean",
+                "description": "For checkboxes/radio buttons - whether checked"
+              },
+              "selected": {
+                "type": "boolean",
+                "description": "Whether the element is selected"
+              },
+              "hovered": {
+                "type": "boolean",
+                "description": "Whether the element is currently being hovered"
+              },
+              "expanded": {
+                "type": "boolean",
+                "description": "For accordions/dropdowns - whether expanded"
+              },
+              "loading": {
+                "type": "boolean",
+                "description": "Whether the element is in a loading state"
+              },
+              "required": {
+                "type": "boolean",
+                "description": "Whether the form field is required"
+              },
+              "readonly": {
+                "type": "boolean",
+                "description": "Whether the element is readonly"
+              },
+              "invalid": {
+                "type": "boolean",
+                "description": "Whether the element has validation errors"
+              }
+            }
+          },
+          "hierarchy": {
+            "type": "object",
+            "description": "Parent-child relationships and nesting",
+            "properties": {
+              "parent_id": {
+                "type": "string",
+                "description": "ID of the parent element"
+              },
+              "parent_type": {
+                "type": "string",
+                "enum": [
+                  "modal",
+                  "dialog",
+                  "sidebar",
+                  "navbar",
+                  "header",
+                  "footer",
+                  "toolbar",
+                  "menu",
+                  "dropdown",
+                  "accordion",
+                  "card",
+                  "list",
+                  "table",
+                  "form",
+                  "section",
+                  "container",
+                  "tab_group",
+                  "toolbar_group",
+                  "other"
+                ],
+                "description": "Type of the parent container"
+              },
+              "siblings": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "IDs of sibling elements at the same level"
+              },
+              "children": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "IDs of child elements"
+              },
+              "depth": {
+                "type": "integer",
+                "description": "Nesting depth in the DOM hierarchy"
+              },
+              "path": {
+                "type": "string",
+                "description": "Hierarchical path to the element (e.g., form.section.button)"
+              }
+            }
+          },
+          "styling": {
+            "type": "object",
+            "description": "Visual styling attributes",
+            "properties": {
+              "color": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "success",
+                  "warning",
+                  "danger",
+                  "error",
+                  "info",
+                  "light",
+                  "dark",
+                  "white",
+                  "black",
+                  "gray",
+                  "red",
+                  "orange",
+                  "yellow",
+                  "green",
+                  "blue",
+                  "purple",
+                  "pink",
+                  "transparent",
+                  "inherit"
+                ],
+                "description": "Primary color of the element"
+              },
+              "background_color": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "success",
+                  "warning",
+                  "danger",
+                  "error",
+                  "info",
+                  "light",
+                  "dark",
+                  "white",
+                  "black",
+                  "transparent",
+                  "none",
+                  "inherit"
+                ]
+              },
+              "size_class": {
+                "type": "string",
+                "enum": [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                  "xxl",
+                  "full_width",
+                  "auto",
+                  "fixed"
+                ],
+                "description": "Size classification of the element"
+              },
+              "prominence": {
+                "type": "string",
+                "enum": [
+                  "primary_action",
+                  "secondary_action",
+                  "tertiary_action",
+                  "subtle",
+                  "muted",
+                  "accent",
+                  "highlighted",
+                  "default"
+                ],
+                "description": "Visual prominence level"
+              },
+              "shape": {
+                "type": "string",
+                "enum": [
+                  "rectangle",
+                  "rounded",
+                  "pill",
+                  "circle",
+                  "square",
+                  "none"
+                ],
+                "description": "Shape/border radius style"
+              },
+              "border_style": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "solid",
+                  "dashed",
+                  "dotted",
+                  "double"
+                ],
+                "description": "Border style"
+              },
+              "shadow": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                  "inset"
+                ],
+                "description": "Shadow level"
+              },
+              "opacity": {
+                "type": "string",
+                "enum": [
+                  "visible",
+                  "semi_transparent",
+                  "transparent",
+                  "hidden"
+                ]
+              },
+              "font_weight": {
+                "type": "string",
+                "enum": [
+                  "thin",
+                  "light",
+                  "regular",
+                  "medium",
+                  "semibold",
+                  "bold",
+                  "extrabold"
+                ]
+              },
+              "text_alignment": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "center",
+                  "right",
+                  "justify"
+                ]
+              }
+            }
+          },
+          "accessibility": {
+            "type": "object",
+            "description": "Accessibility attributes",
+            "properties": {
+              "aria_label": {
+                "type": "string"
+              },
+              "aria_description": {
+                "type": "string"
+              },
+              "aria_role": {
+                "type": "string",
+                "enum": [
+                  "button",
+                  "link",
+                  "checkbox",
+                  "radio",
+                  "textbox",
+                  "combobox",
+                  "menuitem",
+                  "menu",
+                  "dialog",
+                  "img",
+                  "heading",
+                  "list",
+                  "listitem",
+                  "row",
+                  "cell",
+                  "tab",
+                  "tablist",
+                  "treeitem",
+                  "tooltip",
+                  "status",
+                  "alert"
+                ]
+              },
+              "tab_index": {
+                "type": "integer",
+                "description": "Keyboard navigation order"
+              },
+              "keyboard_shortcut": {
+                "type": "string",
+                "description": "Keyboard shortcut if any"
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional metadata",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the element"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name attribute if present"
+              },
+              "href": {
+                "type": "string",
+                "description": "URL if element is a link"
+              },
+              "src": {
+                "type": "string",
+                "description": "Source URL for images"
+              },
+              "tag_name": {
+                "type": "string",
+                "description": "HTML tag name"
+              },
+              "class_names": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Detection confidence score"
+              }
+            },
+            "required": ["id"]
+          }
+        },
+        "required": ["identity", "position", "metadata"]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Overall output metadata",
+      "properties": {
+        "screen_width": {
+          "type": "integer"
+        },
+        "screen_height": {
+          "type": "integer"
+        },
+        "element_count": {
+          "type": "integer"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "required": ["elements"]
+}

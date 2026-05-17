@@ -1,0 +1,523 @@
+{
+  "elements": [
+    {
+      "identity": {
+        "type": "text",
+        "role": "brand_name"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 98,
+        "y": 25,
+        "width": 149,
+        "height": 18,
+        "center_x": 172.5,
+        "center_y": 34
+      },
+      "content": {
+        "text_content": "Nandana Dileep"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "text_nandana_dileep"
+      }
+    },
+    {
+      "identity": {
+        "type": "link",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 356,
+        "y": 25,
+        "width": 36,
+        "height": 18,
+        "center_x": 374,
+        "center_y": 34
+      },
+      "content": {
+        "label": "Work",
+        "text_content": "Work"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_type": "navbar",
+        "parent_id": "navbar_top"
+      },
+      "metadata": {
+        "id": "link_work"
+      }
+    },
+    {
+      "identity": {
+        "type": "link",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 420,
+        "y": 25,
+        "width": 71,
+        "height": 18,
+        "center_x": 455.5,
+        "center_y": 34
+      },
+      "content": {
+        "label": "Projects",
+        "text_content": "Projects"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_type": "navbar",
+        "parent_id": "navbar_top"
+      },
+      "metadata": {
+        "id": "link_projects"
+      }
+    },
+    {
+      "identity": {
+        "type": "link",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 512,
+        "y": 25,
+        "width": 68,
+        "height": 18,
+        "center_x": 546,
+        "center_y": 34
+      },
+      "content": {
+        "label": "Products",
+        "text_content": "Products"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_type": "navbar",
+        "parent_id": "navbar_top"
+      },
+      "metadata": {
+        "id": "link_products"
+      }
+    },
+    {
+      "identity": {
+        "type": "link",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 603,
+        "y": 25,
+        "width": 59,
+        "height": 18,
+        "center_x": 632.5,
+        "center_y": 34
+      },
+      "content": {
+        "label": "Scraps",
+        "text_content": "Scraps"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_type": "navbar",
+        "parent_id": "navbar_top"
+      },
+      "metadata": {
+        "id": "link_scraps"
+      }
+    },
+    {
+      "identity": {
+        "type": "link",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 692,
+        "y": 25,
+        "width": 49,
+        "height": 18,
+        "center_x": 716.5,
+        "center_y": 34
+      },
+      "content": {
+        "label": "Skills",
+        "text_content": "Skills"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_type": "navbar",
+        "parent_id": "navbar_top"
+      },
+      "metadata": {
+        "id": "link_skills"
+      }
+    },
+    {
+      "identity": {
+        "type": "link",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 770,
+        "y": 25,
+        "width": 59,
+        "height": 18,
+        "center_x": 799.5,
+        "center_y": 34
+      },
+      "content": {
+        "label": "Writing",
+        "text_content": "Writing"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_type": "navbar",
+        "parent_id": "navbar_top"
+      },
+      "metadata": {
+        "id": "link_writing"
+      }
+    },
+    {
+      "identity": {
+        "type": "link",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 858,
+        "y": 25,
+        "width": 63,
+        "height": 18,
+        "center_x": 889.5,
+        "center_y": 34
+      },
+      "content": {
+        "label": "Contact",
+        "text_content": "Contact"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_type": "navbar",
+        "parent_id": "navbar_top"
+      },
+      "metadata": {
+        "id": "link_contact"
+      }
+    },
+    {
+      "identity": {
+        "type": "text",
+        "role": "heading",
+        "semantic_type": "subtitle"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 72,
+        "y": 203,
+        "width": 114,
+        "height": 15,
+        "center_x": 129,
+        "center_y": 210.5
+      },
+      "content": {
+        "text_content": "AI ENGINEER"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "text_ai_engineer"
+      }
+    },
+    {
+      "identity": {
+        "type": "text",
+        "role": "heading",
+        "semantic_type": "main_heading"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 72,
+        "y": 259,
+        "width": 368,
+        "height": 44,
+        "center_x": 256,
+        "center_y": 281
+      },
+      "content": {
+        "text_content": "love tinkering with AI"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "heading_love_tinkering"
+      }
+    },
+    {
+      "identity": {
+        "type": "text",
+        "role": "paragraph"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 72,
+        "y": 321,
+        "width": 386,
+        "height": 88,
+        "center_x": 265,
+        "center_y": 365
+      },
+      "content": {
+        "text_content": "AI/ML Engineer building production LLM systems and Agentic systems, from retrieval architectures to end-to-end agent pipelines. IIT-Madras 2024, currently at Jaguar Land Rover."
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "text_description"
+      }
+    },
+    {
+      "identity": {
+        "type": "button",
+        "role": "primary_action"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 72,
+        "y": 452,
+        "width": 137,
+        "height": 40,
+        "center_x": 140.5,
+        "center_y": 472
+      },
+      "content": {
+        "label": "View Work \u2192",
+        "text_content": "View Work \u2192"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "styling": {
+        "prominence": "primary_action"
+      },
+      "metadata": {
+        "id": "button_view_work"
+      }
+    },
+    {
+      "identity": {
+        "type": "icon",
+        "role": "social_link"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 241,
+        "y": 461,
+        "width": 22,
+        "height": 22,
+        "center_x": 252,
+        "center_y": 472
+      },
+      "content": {
+        "icon_name": "GitHub"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "icon_github"
+      }
+    },
+    {
+      "identity": {
+        "type": "icon",
+        "role": "social_link"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 283,
+        "y": 461,
+        "width": 22,
+        "height": 22,
+        "center_x": 294,
+        "center_y": 472
+      },
+      "content": {
+        "icon_name": "LinkedIn"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "icon_linkedin"
+      }
+    },
+    {
+      "identity": {
+        "type": "icon",
+        "role": "social_link"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 324,
+        "y": 461,
+        "width": 22,
+        "height": 22,
+        "center_x": 335,
+        "center_y": 472
+      },
+      "content": {
+        "icon_name": "Medium"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "icon_medium"
+      }
+    },
+    {
+      "identity": {
+        "type": "image",
+        "role": "profile_picture"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 517,
+        "y": 196,
+        "width": 380,
+        "height": 298,
+        "center_x": 707,
+        "center_y": 345
+      },
+      "content": {
+        "alt_text": "Portrait of Nandana Dileep"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "image_profile_picture"
+      }
+    },
+    {
+      "identity": {
+        "type": "text",
+        "role": "section_heading"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 84,
+        "y": 856,
+        "width": 135,
+        "height": 15,
+        "center_x": 151.5,
+        "center_y": 863.5
+      },
+      "content": {
+        "text_content": "01 EXPERIENCE"
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "metadata": {
+        "id": "text_01_experience"
+      }
+    },
+    {
+      "identity": {
+        "type": "scrollbar",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 975,
+        "y": 0,
+        "width": 25,
+        "height": 1000,
+        "center_x": 987.5,
+        "center_y": 500
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "children": [
+          "scrollbar_thumb"
+        ]
+      },
+      "metadata": {
+        "id": "scrollbar_main"
+      }
+    },
+    {
+      "identity": {
+        "type": "scrollbar_thumb",
+        "role": "navigation"
+      },
+      "position": {
+        "coordinate_type": "pixel",
+        "x": 978,
+        "y": 48,
+        "width": 18,
+        "height": 59,
+        "center_x": 987,
+        "center_y": 77.5
+      },
+      "state": {
+        "enabled": true,
+        "visible": true
+      },
+      "hierarchy": {
+        "parent_id": "scrollbar_main",
+        "parent_type": "scrollbar"
+      },
+      "metadata": {
+        "id": "scrollbar_thumb"
+      }
+    }
+  ]
+}
